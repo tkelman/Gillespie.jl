@@ -1,5 +1,4 @@
 using Gillespie
-using Gadfly
 
 function F(x,parms)
   (S,I,R) = x
@@ -16,16 +15,4 @@ tf = 250.0
 srand(1234)
 
 result = ssa(x0,F,nu,parms,tf)
-
-data = ssa_data(result)
-
-p=plot(data,
-  layer(x="time",y="x1",Geom.step,Theme(default_color=color("red"))),
-  layer(x="time",y="x2",Geom.step,Theme(default_color=color("blue"))),
-  layer(x="time",y="x3",Geom.step,Theme(default_color=color("green"))),
-  Guide.xlabel("Time"),
-  Guide.ylabel("Number"),
-  Guide.manual_color_key("Population",
-                            ["S", "I", "R"],
-                            ["red", "blue", "green"]),
-  Guide.title("SIR epidemiological model"))
+@time result = ssa(x0,F,nu,parms,tf)
