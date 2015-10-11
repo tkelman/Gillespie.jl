@@ -3,8 +3,7 @@ module Gillespie
 using Distributions
 using StatsBase
 using DataFrames
-using Docile
-using Lexicon
+using FastAnonymous
 
 export
 	ssa,
