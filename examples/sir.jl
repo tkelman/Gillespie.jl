@@ -16,6 +16,14 @@ tf = 250.0
 srand(1234)
 
 result = ssa(x0,F,nu,parms,tf)
+@time result = ssa(x0,F,nu,parms,tf)
+
+type SIRFunction
+end
+call(SIRFunction,x,parms) = F(x,parms)
+
+result2 = ssa(x0,SIRFunction,nu,parms,tf)
+@time result2 = ssa(x0,SIRFunction,nu,parms,tf)
 
 data = ssa_data(result)
 
