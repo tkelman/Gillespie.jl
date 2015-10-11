@@ -20,7 +20,7 @@ result = ssa(x0,F,nu,parms,tf)
 
 type SIRFunction
 end
-call(SIRFunction,x,parms) = F(x,parms)
+call(::Type{SIRFunction},x,parms) = F(x,parms)
 
 result2 = ssa(x0,SIRFunction,nu,parms,tf)
 @time result2 = ssa(x0,SIRFunction,nu,parms,tf)
