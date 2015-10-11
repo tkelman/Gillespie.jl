@@ -9,9 +9,9 @@ end
 @doc doc"""
   A type storing the call to `ssa`.
   """ ->
-type SSAArgs
+type SSAArgs{f}
   x0::Vector{Int64}
-  F::Function
+  F::Type{f}
   nu::Matrix{Int64}
   parms::Vector{Float64}
   tf::Float64
@@ -25,11 +25,11 @@ end
       - **stats** : an instance of `SSAStats`.
       - **args** : arguments passed to `ssa`.
   """ ->
-type SSAResult
+type SSAResult{f}
   time::Vector{Float64}
   data::Matrix{Int64}
   stats::SSAStats
-  args::SSAArgs
+  args::SSAArgs{f}
 end
 
 @doc doc"""
@@ -41,7 +41,7 @@ end
       - **parms** : a `Vector` of `Float64` representing the parameters of the system.
       - **tf** : the final simulation time (`Float64`)
   """ ->
-function ssa(x0::Vector{Int64},F::Function,nu::Matrix{Int64},parms::Vector{Float64},tf::Float64)
+function ssa{f}(x0::Vector{Int64},F::Type{f},nu::Matrix{Int64},parms::Vector{Float64},tf::Float64)
   # Args
   args = SSAArgs(x0,F,nu,parms,tf)
   # Set up time array
