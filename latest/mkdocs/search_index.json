@@ -1,0 +1,24 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Gillespie.jl: Stochastic Simulation Algorithm in Julia\n\n\n\n\nGillespie.jl: Stochastic Simulation Algorithm in Julia\n\n\nTypes\n\n\nFunctions\n\n\n\n\n\n\n\n\n\n\nTypes\n\n\n#\n\n\nGillespie.SSAStats\n \n \nType\n.\n\n\nA type storing the status at the end of a call to \nssa\n.\n\n\n#\n\n\nGillespie.SSAArgs\n \n \nType\n.\n\n\nA type storing the call to \nssa\n.\n\n\n#\n\n\nGillespie.SSAResult\n \n \nType\n.\n\n\nThis type stores the output of \nssa\n, and comprises of:\n\n\n\n\ntime\n : a \nVector\n of \nFloat64\n, containing the times of simulated events.\n\n\ndata\n : a \nMatrix\n of \nInt64\n, containing the simulated states.\n\n\nstats\n : an instance of \nSSAStats\n.\n\n\nargs\n : arguments passed to \nssa\n.\n\n\n\n\n\n\nFunctions\n\n\n#\n\n\nGillespie.ssa\n \n \nFunction\n.\n\n\nThis function performs Gillespie's stochastic simulation algorithm. It takes the following arguments:\n\n\n\n\nx0\n : a \nVector\n of \nInt64\n, representing the initial states of the system.\n\n\nF\n : a \nFunction\n or a callable type, which itself takes two arguments; x, a \nVector\n of \nInt64\n representing the states, and parms, a \nVector\n of \nFloat64\n representing the parameters of the system.\n\n\nnu\n : a \nMatrix\n of \nInt64\n, representing the transitions of the system, organised by row.\n\n\nparms\n : a \nVector\n of \nFloat64\n representing the parameters of the system.\n\n\ntf\n : the final simulation time (\nFloat64\n)", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#gillespiejl-stochastic-simulation-algorithm-in-julia", 
+            "text": "Gillespie.jl: Stochastic Simulation Algorithm in Julia  Types  Functions", 
+            "title": "Gillespie.jl: Stochastic Simulation Algorithm in Julia"
+        }, 
+        {
+            "location": "/#types", 
+            "text": "#  Gillespie.SSAStats     Type .  A type storing the status at the end of a call to  ssa .  #  Gillespie.SSAArgs     Type .  A type storing the call to  ssa .  #  Gillespie.SSAResult     Type .  This type stores the output of  ssa , and comprises of:   time  : a  Vector  of  Float64 , containing the times of simulated events.  data  : a  Matrix  of  Int64 , containing the simulated states.  stats  : an instance of  SSAStats .  args  : arguments passed to  ssa .", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/#functions", 
+            "text": "#  Gillespie.ssa     Function .  This function performs Gillespie's stochastic simulation algorithm. It takes the following arguments:   x0  : a  Vector  of  Int64 , representing the initial states of the system.  F  : a  Function  or a callable type, which itself takes two arguments; x, a  Vector  of  Int64  representing the states, and parms, a  Vector  of  Float64  representing the parameters of the system.  nu  : a  Matrix  of  Int64 , representing the transitions of the system, organised by row.  parms  : a  Vector  of  Float64  representing the parameters of the system.  tf  : the final simulation time ( Float64 )", 
+            "title": "Functions"
+        }
+    ]
+}

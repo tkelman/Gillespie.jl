@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stochastic simulation algorithm in Julia">
+  <meta name="author" content="sdwfrost">
+  
+  <title>Gillespie.jl</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  <link href="./assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="./assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Gillespie.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#gillespiejl-stochastic-simulation-algorithm-in-julia">Gillespie.jl: Stochastic Simulation Algorithm in Julia</a></li>
+                
+                    <li><a class="toctree-l4" href="#types">Types</a></li>
+                
+                    <li><a class="toctree-l4" href="#functions">Functions</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Gillespie.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/sdwfrost/Gillespie.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Gillespie.jl:-Stochastic-Simulation-Algorithm-in-Julia-1'></a></p>
+<h1 id="gillespiejl-stochastic-simulation-algorithm-in-julia">Gillespie.jl: Stochastic Simulation Algorithm in Julia</h1>
+<ul>
+<li><a href=".#Gillespie.jl:-Stochastic-Simulation-Algorithm-in-Julia-1">Gillespie.jl: Stochastic Simulation Algorithm in Julia</a><ul>
+<li><a href=".#Types-1">Types</a></li>
+<li><a href=".#Functions-1">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p><a id='Types-1'></a></p>
+<h2 id="types">Types</h2>
+<p><a id='Gillespie.SSAStats' href='#Gillespie.SSAStats'>#</a>
+<strong><code>Gillespie.SSAStats</code></strong> &mdash; <em>Type</em>.</p>
+<p>A type storing the status at the end of a call to <code>ssa</code>.</p>
+<p><a id='Gillespie.SSAArgs' href='#Gillespie.SSAArgs'>#</a>
+<strong><code>Gillespie.SSAArgs</code></strong> &mdash; <em>Type</em>.</p>
+<p>A type storing the call to <code>ssa</code>.</p>
+<p><a id='Gillespie.SSAResult' href='#Gillespie.SSAResult'>#</a>
+<strong><code>Gillespie.SSAResult</code></strong> &mdash; <em>Type</em>.</p>
+<p>This type stores the output of <code>ssa</code>, and comprises of:</p>
+<ul>
+<li><strong>time</strong> : a <code>Vector</code> of <code>Float64</code>, containing the times of simulated events.</li>
+<li><strong>data</strong> : a <code>Matrix</code> of <code>Int64</code>, containing the simulated states.</li>
+<li><strong>stats</strong> : an instance of <code>SSAStats</code>.</li>
+<li><strong>args</strong> : arguments passed to <code>ssa</code>.</li>
+</ul>
+<p><a id='Functions-1'></a></p>
+<h2 id="functions">Functions</h2>
+<p><a id='Gillespie.ssa' href='#Gillespie.ssa'>#</a>
+<strong><code>Gillespie.ssa</code></strong> &mdash; <em>Function</em>.</p>
+<p>This function performs Gillespie's stochastic simulation algorithm. It takes the following arguments:</p>
+<ul>
+<li><strong>x0</strong> : a <code>Vector</code> of <code>Int64</code>, representing the initial states of the system.</li>
+<li><strong>F</strong> : a <code>Function</code> or a callable type, which itself takes two arguments; x, a <code>Vector</code> of <code>Int64</code> representing the states, and parms, a <code>Vector</code> of <code>Float64</code> representing the parameters of the system.</li>
+<li><strong>nu</strong> : a <code>Matrix</code> of <code>Int64</code>, representing the transitions of the system, organised by row.</li>
+<li><strong>parms</strong> : a <code>Vector</code> of <code>Float64</code> representing the parameters of the system.</li>
+<li><strong>tf</strong> : the final simulation time (<code>Float64</code>)</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/sdwfrost/Gillespie.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.15.3
+Build Date UTC : 2016-07-25 10:25:39.019756
+-->
